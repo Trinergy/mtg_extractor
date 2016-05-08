@@ -1,7 +1,5 @@
 class Scanner
 
-  #check by extension, if not provided, check by mime content then convert to non "." format
-
   class << self
 
     def scan(file)
@@ -36,5 +34,6 @@ class Scanner
       reader = PDF::Reader.new(file)
       (reader.page(1).raw_content.lines.count != 1) ? true : false
     end
+
   end
 end

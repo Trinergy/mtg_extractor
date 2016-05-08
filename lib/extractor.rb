@@ -85,5 +85,6 @@ class Extractor
     def parse_succ?(parsed_path)
       !File.zero?(parsed_path)
     end
+
   end
 end

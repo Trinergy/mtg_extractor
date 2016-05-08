@@ -4,7 +4,6 @@ class Cleaner
 
     def clean(tmp_file, clean_path)
       clean_file = clean_copy(clean_path)
-
       File.foreach(tmp_file) do |line|
         remove_blank_line(line)
         write_line(clean_file, line)
@@ -28,5 +27,6 @@ class Cleaner
     def clean_succ?(clean_path)
       !File.zero?(clean_path)
     end
+
   end
 end
