@@ -6,16 +6,18 @@ class FileManager
 
   class << self
 
-    def tmp_path(path)
-      TMP_PATH + get_txt_ext(path)
-    end
-
-    def parsed_path(path)
-      PARSED_PATH + File.basename(path)
-    end
-
-    def clean_path(path)
-      CLEAN_PATH + File.basename(path)
+    def change_to(path, filter)
+      txt_file = get_txt_ext(path)
+      case filter
+      when "tmp"
+        TMP_PATH + txt_file
+      when "clean"
+        CLEAN_PATH + txt_file
+      when "parsed"
+        PARSED_PATH + txt_file
+      else
+        raise "File path can not be changed"
+      end
     end
 
     def get_txt_ext(file)
