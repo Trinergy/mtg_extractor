@@ -79,7 +79,7 @@ class Extractor
     end
 
     def parsed_copy(parsed_path)
-      File.new(parsed_path, "w")
+      File.new(parsed_path, "a")
     end
 
     def parse_succ?(parsed_path)

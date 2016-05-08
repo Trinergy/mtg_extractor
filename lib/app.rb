@@ -29,13 +29,20 @@ end
 
 if clean_succ
   parsed_path = FileManager.parsed_path(clean_path)
-  field_query = "Name"
-  Extractor.extract(clean_path, parsed_path, field_query)
+  field_query = ["Payment", "Name"]
+  if field_query.kind_of?(Array)
+    field_query.each do |query|
+      Extractor.extract(clean_path, parsed_path, query)
+    end
+  else
+    Extractor.extract(clean_path, parsed_path, field_query)
+  end
 else
   raise "File could not be extracted"
 end
 
-
+#work on extractor, initialize it with specific queries?
+#take an array of queries and do it accordingly?
 
 # p file.get_ext
 
