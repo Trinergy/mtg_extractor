@@ -22,6 +22,7 @@ The [Docsplit](https://documentcloud.github.io/docsplit/) gem has a few dependen
 ##Documentation
 
 The application uses 5 essential tools: Scanner, Converter, FileManager, Cleaner, and Extractor.
+(Delegator is optional, it will be considered when the delegation of tasks gets more complicated when Image processing gets implemented to provide more accurate reads with OCR)
 
 ###Scanner
 `Scanner.scan` presents the properties of the file as a hash to make it easier for the application to delegate tasks.
