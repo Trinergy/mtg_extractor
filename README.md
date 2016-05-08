@@ -6,9 +6,13 @@ A library that converts PDF/Images to text which then extracts information from 
 The [Docsplit](https://documentcloud.github.io/docsplit/) gem has a few dependencies so please make sure to install them before running the application.
 
 `$ brew install graphicsmagick`
+
 `$ brew install poppler`
+
 `$ brew install ghostscript`
+
 `$ brew install tesseract`
+
 `$ bundle install`
 
 ##Usage
