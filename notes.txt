@@ -1,3 +1,10 @@
+05/18/2016
+Consider File.zero? as another check wtih File.exist? what's the trade-off? Is it okay to just waste time on files that have nothing to be processed to begin with? Will the check take more time than the process?
+
+can not rely on the fact that directories will be made on file write, need to modify the function to create file before write
+
+----
+
 #work on extractor, initialize it with specific queries?
 #take an array of queries and do it accordingly?
 
