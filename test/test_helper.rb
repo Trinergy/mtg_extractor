@@ -14,6 +14,9 @@ require File.join(here, '..', 'lib', 'extractor')
 class Minitest::Test
 
   OUTPUT = 'test/output'
+  TMP_PATH = FileManager::TMP_PATH
+  CLEAN_PATH = FileManager::CLEAN_PATH
+  PARSED_PATH = FileManager::PARSED_PATH
 
   def clear_output
     FileUtils.rm_r(OUTPUT) if File.exists?(OUTPUT)
