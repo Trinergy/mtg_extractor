@@ -2,14 +2,14 @@ require_relative "./../test_helper"
 
 class TestScanner < MiniTest::Test
   def setup
-    @pdf_file = Scanner.scan("./docs/Filogix Mortgage Summary.pdf")
-    @img_file = Scanner.scan("./docs/MortgageSummary.jpg")
-    @old_pdf_file = Scanner.scan("./docs/MortgageApplication.pdf")
-    @bad_file = "./docs/IAMSOBADIWILLFAIL"
+    @pdf_file = Scanner.scan("./test/docs/Filogix Mortgage Summary.pdf")
+    @img_file = Scanner.scan("./test/docs/MortgageSummary.jpg")
+    @old_pdf_file = Scanner.scan("./test/docs/MortgageApplication.pdf")
+    @bad_file = "./test/docs/IAMSOBADIWILLFAIL"
   end
 
   def test_return_path
-    assert_match("./docs/Filogix Mortgage Summary.pdf", @pdf_file[:path])
+    assert_match("./test/docs/Filogix Mortgage Summary.pdf", @pdf_file[:path])
   end
 
   def test_return_ext

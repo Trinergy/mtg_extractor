@@ -24,7 +24,6 @@ class FileManager
     end
 
     private
-
     def get_txt_ext(file)
       ext = File.extname(file)
 

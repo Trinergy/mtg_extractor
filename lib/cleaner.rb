@@ -1,14 +1,20 @@
 class Cleaner
   class << self
     def clean(tmp_file, clean_path)
-      clean_file = clean_copy(clean_path)
-      File.foreach(tmp_file) do |line|
-        remove_blank_line(line)
-        write_line(clean_file, line)
+      if File.exist?(tmp_file)
+        clean_file = clean_copy(clean_path)
+        File.foreach(tmp_file) do |line|
+          remove_blank_line(line)
+          write_line(clean_file, line)
+        end
+        clean_file.close
+        clean_succ?(clean_path)
+      else
+        raise "File could not be cleaned because it does not exist"
       end
-      clean_file.close
-      clean_succ?(clean_path)
     end
+
+    private
 
     def write_line(clean_file, line)
       clean_file.puts line unless line.chomp.empty?
@@ -19,7 +25,7 @@ class Cleaner
     end
 
     def clean_copy(clean_path)
-      File.new(clean_path, "w")
+      File.new(clean_path, "w+")
     end
 
     def clean_succ?(clean_path)

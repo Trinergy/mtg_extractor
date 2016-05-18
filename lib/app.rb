@@ -11,7 +11,7 @@ require_relative "cleaner"
 require_relative "file_manager"
 require_relative "extractor"
 
-file = Scanner.scan("./docs/Filogix Test App.pdf")
+file = Scanner.scan("./docs/MortgageSummary.jpg")
 
 p file
 
