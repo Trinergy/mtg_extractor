@@ -11,10 +11,12 @@ require_relative "cleaner"
 require_relative "file_manager"
 require_relative "extractor"
 
-file = Scanner.scan("./docs/MortgageApplication.pdf")
+file = Scanner.scan("./docs/Filogix Test App.pdf")
+
+p file
 
 if !file.empty?
-  conv_succ = Converter.convert(file)
+  conv_succ = Converter.convert(file, './docs/tmp')
 else
   raise "File could not be converted"
 end

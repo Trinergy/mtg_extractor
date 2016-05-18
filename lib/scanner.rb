@@ -3,12 +3,18 @@ class Scanner
   class << self
 
     def scan(file)
-      scan_file = {
-        path: file,
-        ext: get_ext(file),
-        ocr: use_ocr?(file)
-        }
+      if File.exist?(file)
+        scan_file = {
+          path: file,
+          ext: get_ext(file),
+          ocr: use_ocr?(file)
+          }
+      else
+        raise "Can not scan because file does not exist"
+      end
     end
+
+    private
 
     def get_ext(file)
       ext = File.extname(file).delete(".")

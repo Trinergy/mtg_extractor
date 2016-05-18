@@ -1,7 +1,5 @@
 class Cleaner
-
   class << self
-
     def clean(tmp_file, clean_path)
       clean_file = clean_copy(clean_path)
       File.foreach(tmp_file) do |line|
@@ -27,6 +25,5 @@ class Cleaner
     def clean_succ?(clean_path)
       !File.zero?(clean_path)
     end
-
   end
 end
