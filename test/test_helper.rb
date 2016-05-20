@@ -25,5 +25,4 @@ class Minitest::Test
   def teardown
     clear_output
   end
-
 end
