@@ -1,7 +1,6 @@
 class Scanner
 
   class << self
-
     def scan(file)
       if File.exist?(file)
         scan_file = {
@@ -40,6 +39,5 @@ class Scanner
       reader = PDF::Reader.new(file)
       (reader.page(1).raw_content.lines.count != 1) ? true : false
     end
-
   end
 end

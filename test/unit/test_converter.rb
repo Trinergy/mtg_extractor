@@ -1,6 +1,6 @@
 require_relative "./../test_helper"
 
-#file type does not matter since OCR usage is determined by Scanner class
+#file type does not matter since OCR usage is determined by Scanner class, use when filetype check involves special formats
 
 class TestConverter < MiniTest::Test
   def setup

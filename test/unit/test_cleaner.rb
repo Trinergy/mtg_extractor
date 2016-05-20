@@ -6,7 +6,6 @@ class TestCleaner < MiniTest::Test
     @good_file = "./test/docs/tmp/MortgageSummary.txt"
     @bad_file = "./test/docs/tmp/LOLFAILMORE"
     @empty_file = "./test/docs/tmp/empty.txt"
-    @empty_with_space_file = "./test/docs/tmp/empty_with_space.txt"
     @clean_path = "#{OUTPUT}/MortgageSummary.txt"
   end
 
@@ -17,7 +16,7 @@ class TestCleaner < MiniTest::Test
 
   def test_clean_good_file_no_whitespace
     #test 2nd line b/c some converted files still have txt on first line but whitespaces onwards.
-    #used gets instead of read so the whole file doesn't get loaded into memory
+    #used gets instead of read so the whole file doesn't get loaded into memory aka slurping
     Cleaner.clean(@good_file, @clean_path)
     @file = File.open(@clean_path)
     2.times{@file.gets}
@@ -28,11 +27,6 @@ class TestCleaner < MiniTest::Test
   def test_clean_good_file_return_succ_true
     @success = Cleaner.clean(@good_file, @clean_path)
     assert(@success)
-  end
-
-  def test_clean_empty_with_space_file_return_succ_false
-    @success = Cleaner.clean(@empty_with_space_file, @clean_path)
-    refute(@success)
   end
 
   def test_clean_empty_file_raise_err

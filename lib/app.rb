@@ -13,34 +13,21 @@ require_relative "extractor"
 
 file = Scanner.scan("./docs/MortgageSummary.jpg")
 
-p file
+Converter.convert(file, './docs/tmp')
 
-if !file.empty?
-  conv_succ = Converter.convert(file, './docs/tmp')
-else
-  raise "File could not be converted"
-end
+tmp_file = FileManager.change_to(file[:path], "tmp")
+clean_path = FileManager.change_to(file[:path], "clean")
 
-if conv_succ
-  tmp_file = FileManager.change_to(file[:path], "tmp")
-  clean_path = FileManager.change_to(file[:path], "clean")
-  clean_succ = Cleaner.clean(tmp_file, clean_path)
-else
-  raise "File could not be cleaned"
-end
+Cleaner.clean(tmp_file, clean_path)
 
-if clean_succ
-  parsed_path = FileManager.change_to(file[:path], "parsed")
-  field_query = ["Address", "Name"]
-  if field_query.kind_of?(Array)
-    field_query.each do |query|
-      Extractor.extract(clean_path, parsed_path, query)
-    end
-  else
-    Extractor.extract(clean_path, parsed_path, field_query)
+parsed_path = FileManager.change_to(file[:path], "parsed")
+field_query = ["Address", "Name"]
+if field_query.kind_of?(Array)
+  field_query.each do |query|
+    Extractor.extract(clean_path, parsed_path, query)
   end
 else
-  raise "File could not be extracted"
+  Extractor.extract(clean_path, parsed_path, field_query)
 end
 
 

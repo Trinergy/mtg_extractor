@@ -3,10 +3,16 @@ class Extractor
   class << self
 
     def extract(clean_file, parsed_path, str)
-      all_lineno = get_lineno(clean_file, str)
-      write_parsed_copy(clean_file, parsed_path, all_lineno)
-      parse_succ?(parsed_path)
+      if File.exist?(clean_file) && !File.zero?(clean_file)
+        all_lineno = get_lineno(clean_file, str)
+        write_parsed_copy(clean_file, parsed_path, all_lineno)
+        !File.zero?(parsed_path)
+      else
+        raise "#{clean_file} could not be extracted because it is either empty or does not exist"
+      end
     end
+
+    private
 
     def write_parsed_copy(clean_file, parsed_path, all_lineno)
       parsed_file = parsed_copy(parsed_path)
@@ -81,10 +87,5 @@ class Extractor
     def parsed_copy(parsed_path)
       File.new(parsed_path, "a")
     end
-
-    def parse_succ?(parsed_path)
-      !File.zero?(parsed_path)
-    end
-
   end
 end
