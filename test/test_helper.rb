@@ -12,6 +12,8 @@ require File.join(here, '..', 'lib', 'extractor')
 # require File.join(here, '..', 'lib', 'delegator')
 
 class Minitest::Test
+  include FileManager
+  include Cleaner
 
   OUTPUT = 'test/output'
   TMP_PATH = FileManager::TMP_PATH

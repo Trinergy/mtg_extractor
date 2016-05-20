@@ -12,6 +12,11 @@ can not rely on the fact that directories will be made on file write, consider m
 
 ----
 
+05/20/2016
+  Redesign FP to OOP. delete scanner, reroute tests. write test for File_delegator Review and Refactor.
+
+----
+
 #work on extractor, initialize it with specific queries?
 #take an array of queries and do it accordingly?
 
