@@ -3,14 +3,14 @@ require_relative "pdf_file"
 
 class FileDelegator
   attr_reader :paths
-  
+
   def initialize(paths)
     raise "File/Folder does not exist" unless !paths.empty?
     @paths = paths
   end
 
   def assign_files
-    @paths.collect do |path|
+    paths.collect do |path|
       if use_ocr?(path)
         create_ocr_file(path)
       else

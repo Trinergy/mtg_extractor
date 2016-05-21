@@ -1,6 +1,0 @@
-Name:
-Mr. John Smith
-Product Name:
-N/A
-Address: 1234 Elm Street Vancouver, BC V5Y 0E8
-Property Address: 1234 Elm Street Vancouver, BC V5Y 0E8

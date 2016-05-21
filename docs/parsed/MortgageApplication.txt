@@ -1,4 +1,0 @@
-Name: Mr. John Smith
-Lender:<Not Assigned) Product Name: ?Loan Type: Mortgage
-Address: 1234 Elm Street Vancouver. BC V5Y 0E8
-Property Address; 1234 Elm Street Vancouver, BC V5Y 0E8

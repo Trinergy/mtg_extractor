@@ -6,7 +6,7 @@ class OcrFile
   include Cleaner
   include FileManager
   include Extractor
-  attr_reader :path 
+  attr_reader :path, :ocr
 
   def initialize(path)
     @path = path
@@ -14,7 +14,7 @@ class OcrFile
   end
 
   def convert
-    Docsplit.extract_text(@path, :ocr => @ocr, :output => './docs/tmp')
+    Docsplit.extract_text(path, :ocr => ocr, :output => './docs/tmp')
   end
 
   def clean
@@ -35,14 +35,14 @@ class OcrFile
   private
 
   def get_tmp
-    FileManager.change_to(@path, "tmp")
+    FileManager.change_to(path, "tmp")
   end
 
   def get_clean
-    FileManager.change_to(@path, "clean")
+    FileManager.change_to(path, "clean")
   end
 
   def get_parsed
-    FileManager.change_to(@path, "parsed")
+    FileManager.change_to(path, "parsed")
   end
 end
