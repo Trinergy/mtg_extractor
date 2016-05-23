@@ -2,7 +2,7 @@ require_relative "./../test_helper"
 
 class TestFileManager < MiniTest::Test
   def setup
-    @good_file = "./docs/MortgageSummary.jpg"
+    @good_file = "./docs/files/MortgageSummary.jpg"
     @bad_file = "./docs/IAMSOBADIWILLFAIL"
   end
 

@@ -1,8 +1,10 @@
 require_relative "cleaner"
 require_relative "file_manager"
 require_relative "extractor"
+require_relative "converter"
 
 class PdfFile
+  include Converter
   include Cleaner
   include FileManager
   include Extractor
@@ -14,7 +16,7 @@ class PdfFile
   end
 
   def convert
-    Docsplit.extract_text(path, :ocr => ocr, :output => './docs/tmp')
+    Converter.convert(path, ocr)
   end
 
   def clean

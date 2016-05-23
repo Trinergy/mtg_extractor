@@ -30,6 +30,7 @@ class FileDelegator
   end
 
   def get_ext(file)
+    #delete period b/c mimemagic returns subtype w/o it
     ext = File.extname(file).delete(".")
     if ext.empty?
       ext = MimeMagic.by_magic(File.open(file)).subtype
