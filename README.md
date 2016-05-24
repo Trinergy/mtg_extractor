@@ -21,26 +21,27 @@ The [Docsplit](https://documentcloud.github.io/docsplit/) gem has a few dependen
 
 ##Documentation
 
-The application uses 5 essential tools: Scanner, Converter, FileManager, Cleaner, and Extractor.
+The application uses 5 essential tools: FileDelegator, Converter, FileManager, Cleaner, and Extractor.
 
-###Scanner
-`Scanner.scan` presents the properties of the file as a hash to make it easier for the application to delegate tasks.
+###FileDelegator
+`FileDelegator` is a factory that takes a file or folder path and creates OcrFile or PdfFile objects according to the file's extension or mimetype.
 ```ruby
-Scanner.scan("./docs/MortgageApplication.pdf")
-# {:path=>"./docs/MortgageApplication.pdf", :ext=>"pdf", :ocr=>true}
+FileDelegator.new(Dir["./docs/files/MortgageAp*"])
+FileDelegator.assign_files
+# [#<OcrFile:0x007f93aa0fc860 @path="./docs/files/MortgageApplication-page-001.jpg", @ocr=true>, #<OcrFile:0x007f93aa0fc428 @path="./docs/files/MortgageApplication-page-002.jpg", @ocr=true>, #<OcrFile:0x007f93a894b9f0 @path="./docs/files/MortgageApplication.pdf", @ocr=true>]
 ```
 OCR is used for images as well as PDF versions that the [pdf-reader](https://github.com/yob/pdf-reader) can not convert
 
 ###Converter
-`Converter.convert` takes the PDF or image file (provided by the file hash) and converts it into a rough (still lots of whitespaces) text file and returns a boolean to notify if conversion was successful or not.
+`Converter.convert` takes three arguments: filepath, boolean(use_ocr?), and output path. The PDF or image file gets converted it into a rough (whitespace included) text file to a specified output folder.
 ```ruby
-file = {:path=>"./docs/MortgageApplication.pdf", :ext=>"pdf", :ocr=>true}
-Converter.convert(file)
-# true
+pdf_file = "./docs/files/Filogix Mortgage Summary.pdf"
+output = 'test/output'
+Converter.convert(pdf_file, false, output)
 ```
 
 ###FileManager
-The FileManager contains paths to file directories that are destinations for conversions, cleaning, and parsing. It is responsible for converting files' extensions and paths to its proper destination.
+The FileManager is a module that contains paths to file directories that are destinations for conversions, cleaning, and parsing. It is responsible for converting files' extensions and paths to its proper destinations.
 ```ruby
 TMP_PATH = "./docs/tmp/"
 CLEAN_PATH = "./docs/clean/"
@@ -53,9 +54,9 @@ FileManager.change_to("./docs/MortgageApplication.pdf", "tmp")
 ###Cleaner
 `Cleaner.clean` takes a text file and rewrites it into the clean files directory with whitespaces and line breaks removed. Returns boolean value based on clean success.
 ```ruby
-tmp_file = FileManager.change_to(file[:path], "tmp")
+tmp_file = FileManager.change_to("./docs/MortgageApplication.pdf", "tmp")
 # "./docs/tmp/MortgageApplication.txt"
-clean_path = FileManager.change_to(file[:path], "clean")
+clean_path = FileManager.change_to("./docs/MortgageApplication.pdf", "clean")
 # "./docs/clean/MortgageApplication.txt"
 
 Cleaner.clean(tmp_file, clean_path)
@@ -65,10 +66,10 @@ Cleaner.clean(tmp_file, clean_path)
 ###Extractor
 `Extractor.extract` writes a parsed copy in a text file based on the fields array provided in the query.
 ```ruby
-parsed_path = FileManager.change_to(file[:path], "parsed")
+parsed_path = FileManager.change_to("./docs/MortgageApplication.pdf", "parsed")
 # "./docs/parsed/MortgageApplication.txt"
 
-field_query = ["Address", "Name"]
+query = ["Address", "Name"]
 
 field_query.each do |query|
   Extractor.extract(clean_path, parsed_path, query)
