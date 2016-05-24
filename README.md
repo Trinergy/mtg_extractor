@@ -1,5 +1,5 @@
 #Mortgage Application Text Extractor
-A library that converts PDF/Images to text which then extracts information from it. Can also work for any forms and uses [Tesseract](https://github.com/tesseract-ocr/tesseract) open-source Optical Character Recognition engine.
+A library that converts PDF/Images to text and then extracts text from it. Can also work for any forms. It uses [Tesseract](https://github.com/tesseract-ocr/tesseract) open-source Optical Character Recognition engine.
 
 ##Setting Up
 
@@ -22,7 +22,8 @@ The [Docsplit](https://documentcloud.github.io/docsplit/) gem has a few dependen
 ##Documentation
 
 The application uses 5 essential tools: FileDelegator, Converter, FileManager, Cleaner, and Extractor.
-The 2 classes: OcrFile and PdfFile use libraries above to process files.
+
+The 2 classes: OcrFile and PdfFile use the libraries above to process files.
 
 ###FileDelegator
 `FileDelegator` is a factory that takes a file or folder path and creates OcrFile or PdfFile objects according to the file's extension or mimetype.
@@ -85,6 +86,7 @@ end
 ###Notes
 The extractor is not 100% accurate and can be improved with machine learning. It is possible to feed it expected templates and formats of information so it knows what keywords to look for in regards to certain fields.
 
-For example: Residency Status can only have so many values.
+For example: Residency Status can only have so many kinds values
+              Bank statements are expected to have X many lines
 
 The current extractor works by examining the file line by line for just the fields then saves the line number to an array. Then it checks if the field's line contains any content. If not, it checks the next line's content and gets it's line number and pushes it to its respective field's array. If the next line has another field (determined by presence of colon), it will treat it as a contentless field and automatically prints "N/A" for its content. It then stores all these fields in their respective sets in an array of arrays. Then these line numbers (of the clean copy) will get printed into a parsed copy text file.
