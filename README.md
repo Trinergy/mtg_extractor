@@ -22,6 +22,7 @@ The [Docsplit](https://documentcloud.github.io/docsplit/) gem has a few dependen
 ##Documentation
 
 The application uses 5 essential tools: FileDelegator, Converter, FileManager, Cleaner, and Extractor.
+The 2 classes: OcrFile and PdfFile use libraries above to process files.
 
 ###FileDelegator
 `FileDelegator` is a factory that takes a file or folder path and creates OcrFile or PdfFile objects according to the file's extension or mimetype.
