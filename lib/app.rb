@@ -6,13 +6,10 @@ require "mimemagic" #determine mime type by file content
 #https://github.com/minad/mimemagic
 
 require_relative "file_delegator"
-require_relative "file_manager"
-require_relative "cleaner"
-require_relative "extractor"
 
 query = ["Name" , "Address"]
 
-folder = FileDelegator.new(Dir["./docs/files/*"])
+folder = FileDelegator.new(Dir["./docs/files/Filogix Test*"])
 files = folder.assign_files
 
 files.each do |file|

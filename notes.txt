@@ -16,7 +16,6 @@ can not rely on the fact that directories will be made on file write, consider m
   Redesign FP to OOP. delete scanner, reroute tests. write test for File_delegator Review and Refactor. Rewrite docs
 
   Test convert function of both classes
-
 ----
 
 05/21/2016
@@ -25,7 +24,16 @@ can not rely on the fact that directories will be made on file write, consider m
   Wrote tests for delegator
   Rerouted filepaths for tests
   Unit tests complete for modules
-  Need to rewrite docs
+
+  Need to rewrite docs**
+
+  Questions:
+    Do I really need to return a value for completion of processes? Assuming Delegator alrdy checks things through, that is the biggest hurdle for errors, the other ones would more likely be ppl trolling like giving a completely empty file or hacky stuff.
+    ^Determines if I need tests to test for other breakages
+
+    I need a more accurate test for my File Delegator to verify exact objects returned
+
+
 ----
 
 #work on extractor, initialize it with specific queries?
